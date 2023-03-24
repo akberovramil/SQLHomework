@@ -17,7 +17,7 @@ WHERE age BETWEEN 30 AND 50;
 SELECT * FROM employee
 ORDER BY last_name DESC;
 SELECT * FROM employee
-WHERE first_name LIKE '_____%';
+WHERE length(first_name) > 4;
 
 ЗАДАНИЕ 2
 
@@ -36,8 +36,7 @@ SELECT first_name AS Имя,
 MIN(age) AS Минимальный_возраст
 FROM employee
 GROUP BY Имя;
-SELECT first_name AS Неуникальное_имя,
-age AS Возраст
+SELECT first_name,
+max(age)
 FROM employee
-WHERE NOT first_name = 'Maria'
-ORDER BY age ASC;
+GROUP BY first_name HAVING count(first_name) > 1;
