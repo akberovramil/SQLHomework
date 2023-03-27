@@ -40,3 +40,47 @@ SELECT first_name,
 max(age)
 FROM employee
 GROUP BY first_name HAVING count(first_name) > 1;
+
+Домашнее задание 2
+
+ЗАДАНИЕ 1
+
+CREATE TABLE city (
+city_id BIGSERIAL NOT NULL PRIMARY KEY,
+city_name VARCHAR(60) NOT NULL
+);
+ALTER TABLE employee ADD COLUMN city_id BIGSERIAL NOT NULL;
+ALTER TABLE employee ADD FOREIGN KEY(city_id) REFERENCES city(city_id);
+INSERT INTO city (
+city_name)
+VALUES('Kazan');
+SELECT * FROM employee
+SELECT * FROM city
+INSERT INTO city (
+city_name)
+VALUES('Ufa');
+SELECT city_name, first_name, last_name
+FROM city
+INNER JOIN employee
+ON city.city_id=employee.city_id;
+
+Задание 2
+
+SELECT first_name, last_name, city_name
+FROM employee
+INNER JOIN city
+ON city.city_id=employee.city_id;
+INSERT INTO city (
+city_name)
+VALUES('Niznekamsk');
+SELECT city_name, first_name, last_name
+FROM city
+LEFT JOIN employee
+ON city.city_id=employee.city_id;
+SELECT city_name, first_name
+FROM city
+FULL JOIN employee
+ON city.city_id=employee.city_id;
+SELECT city_name, first_name
+FROM city
+CROSS JOIN employee;
